@@ -1,30 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using NLayerApp.BLL.Interface;
+using NLayerApp.BLL.DTO;
+using NLayerApp.WEB.Models;
+using AutoMapper;
+using NLayerApp.BLL.Infrastructure;
+using System.Linq;
 
 namespace NLayerApp.WEB.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        IOrderService orderService;
+        public int pageSize = 20;
+        private PagingInfo category;
+
+        public HomeController(IOrderService serv)
         {
-            return View();
+            orderService = serv;
+        }
+        public ActionResult Index(int page = 1)
+        {
+
+                IEnumerable < ProductDTO > productDtos = orderService.GetProducts();
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ProductDTO, ProductViewModel>()).CreateMapper();
+            var products = mapper.Map<IEnumerable<ProductDTO>, List<ProductViewModel>>(productDtos);
+        //        .Skip((page - 1) * pageSize)
+        //        .Take(pageSize);
+        //    PagingInfo PagingInfo = new PagingInfo
+        //    {
+        //        CurrentPage = page,
+        //        ItemsPerPage = pageSize,
+        //        TotalItems = orderService.GetProducts().Count()
+        //    },
+        //CurrentCategory = category;
+
+          
+            return View(products);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+        public ActionResult MakeOrder(int? id)
+        {
+            try
+            {
+
+                ProductDTO product = orderService.GetProduct(id);
+                var order = new OrderViewModel { ProductId = product.Id };
+
+                return View(order);
+            }
+            catch (ValidationException ex)
+            {
+                return Content(ex.Message);
+            }
         }
-
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult MakeOrder(OrderViewModel order)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            try
+            {
+                var orderDto = new OrderDTO { ProductId = order.ProductId, Address = order.Address, PhoneNumber = order.PhoneNumber };
+                orderService.MakeOrder(orderDto);
+                return Content("<h2>Ваш заказ успешно оформлен</h2>");
+            }
+            catch (ValidationException ex)
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+            }
+            return View(order);
+        }
+        protected override void Dispose(bool disposing)
+        {
+            orderService.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
