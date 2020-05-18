@@ -12,8 +12,7 @@ namespace NLayerApp.BLL.Interface
         void MakeOrder(OrderDTO orderDto);
         ProductDTO GetProduct(int? id);
         IEnumerable<ProductDTO> GetProducts();
-        //PhoneDTO GetPhone(int? id);
-        //IEnumerable<PhoneDTO> GetPhones();
+
         void Dispose();
     }
 }

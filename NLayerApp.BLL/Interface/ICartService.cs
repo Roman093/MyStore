@@ -9,8 +9,10 @@ namespace NLayerApp.BLL.Interface
 {
     public interface ICartService
     {
+
         ProductDTO GetProduct(int? id);
         IEnumerable<ProductDTO> GetProducts();
+        void Add(CartLineDTO cartLineDTO, int quantity);
         void Dispose();
     }
 }

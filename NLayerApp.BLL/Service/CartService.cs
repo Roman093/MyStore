@@ -1,6 +1,8 @@
-﻿using NLayerApp.BLL.DTO;
+﻿using AutoMapper;
+using NLayerApp.BLL.DTO;
 using NLayerApp.BLL.Infrastructure;
 using NLayerApp.BLL.Interface;
+using NLayerApp.DAL.Entities;
 using NLayerApp.DAL.Interface;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace NLayerApp.BLL.Service
 {
     public class CartService : ICartService
     {
+
         IUnitOfWork Database { get; set; }
 
         public CartService(IUnitOfWork uow)
@@ -19,42 +22,89 @@ namespace NLayerApp.BLL.Service
             Database = uow;
         }
 
-        public CartLineDTO GetProduct(int? id)
+        public void Add(CartLineDTO cartLineDTO, int quantity)
         {
-            throw new NotImplementedException();
-        }
+            Product products = Database.Products.Get(cartLineDTO.ProductId);
+            if (cartLineDTO == null)
+                throw new NotImplementedException();
 
-        ProductDTO ICartService.GetProduct(int? id)
+            //Database.Add(new CartLineDTO
+            //{
+                CartLine cart = new CartLine
+                {
+                    ProductId = products.Id,
+                    Quantity = cartLineDTO.Quantity,
+
+                    //quantity += quantity;
+                };
+                Database.Carts.Create(cart);
+                Database.Save();
+            }  
+
+        public ProductDTO GetProduct(int? id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+                throw new NotImplementedException();
+            var product = Database.Products.Get(id.Value);
+            if (product == null)
+                throw new NotImplementedException();
+            return new ProductDTO { Id = product.Id, Name = product.Name, Price = product.Price };
         }
 
         public IEnumerable<ProductDTO> GetProducts()
         {
-            throw new NotImplementedException();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Product, ProductDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<Product>, List<ProductDTO>>(Database.Products.GetAll());
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Database.Dispose();
         }
-
-        //public IEnumerable<ProductDTO> GetProducts()
-        //{
-        //    //if (id == null)
-        //    //    throw new ValidationException("Не установлено id товара", "");
-        //    //var product = Database.Products.Get(id.Value);
-        //    ////if (product == null)
-        //    ////    throw new ValidationException("Товар не найден", "");
-        //    return new ProductDTO { Company = product.Company, Id = product.Id, Name = product.Name, Price = product.Price };
     }
+}
 
-        //public void Dispose()
-        //{
-        //    throw new NotImplementedException();
-        }
+//    {
+//        Database.Add(new CartLineDTO
+//        {
+//            Product = product,
+//            Quantity = quantity
+//        });
+//    }
+//    else
+//    {
+//        line.Quantity += quantity;
 //    }
 //}
+
+
+
+
+
+
+
+//    public CartLineDTO GetProduct(int? id)
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    ProductDTO ICartService.GetProduct(int? id)
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public IEnumerable<ProductDTO> GetProducts()
+//    {
+//        throw new NotImplementedException();
+//    }
+
+//    public void Dispose()
+//    {
+//        throw new NotImplementedException();
+//    }
+//}
+
+
 
 //public void AddItem(Product product, int quantity)
 //{
@@ -91,8 +141,8 @@ namespace NLayerApp.BLL.Service
 //    lineCollection.Clear();
 //}
 
-//public IEnumerable<CartLine> Lines
-//{
-//    get { return lineCollection; }
-//}
+//    public IEnumerable<CartLine> Lines
+//    {
+//        get { return lineCollection; }
 //    }
+//}

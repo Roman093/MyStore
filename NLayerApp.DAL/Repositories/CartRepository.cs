@@ -12,37 +12,42 @@ namespace NLayerApp.DAL.Repositories
 {
     public class CartRepository : IRepository<CartLine>
     {
-        public void Create(CartLine item)
+        private MobileContext db;
+        public CartRepository(MobileContext context)
         {
-            throw new NotImplementedException();
+            this.db = context;
         }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<CartLine> Find(Func<CartLine, bool> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CartLine Get(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<CartLine> GetAll()
         {
-            throw new NotImplementedException();
+            return db.Carts.Include(o => o.Product);
         }
-
-        public void Update(CartLine item)
+        public CartLine Get(int id)
         {
-            throw new NotImplementedException();
+            return db.Carts.Find(id);
+        }
+        public void Create(CartLine cart)
+        {
+            db.Carts.Add(cart);
+        }
+        public void Update(CartLine cart)
+        {
+            db.Entry(cart).State = EntityState.Modified;
+        }
+        public IEnumerable<CartLine> Find(Func<CartLine, Boolean> predicate)
+        {
+            return db.Carts.Include(o => o.Product).Where(predicate).ToList();
+        }
+        public void Delete(int id)
+        {
+            CartLine cart = db.Carts.Find(id);
+            if (cart != null)
+                db.Carts.Remove(cart);
         }
     }
 }
+
+
+
 //        //private List<CartLine> lineCollection = new List<CartLine>();
 
 //        private MobileContext db;

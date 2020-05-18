@@ -15,6 +15,7 @@ namespace NLayerApp.DAL.Repositories
         private ProductRepository productRepository;
         //private CategoryRepository categoryRepository;
         private OrderRepository orderRepository;
+        private CartRepository cartRepository;
 
         public EFUnitOfWork(string connectionString)
         {
@@ -58,9 +59,17 @@ namespace NLayerApp.DAL.Repositories
         //    }
         //}
 
-        public IRepository<CartLine> Carts => throw new NotImplementedException();
+        public IRepository<CartLine> Carts
+        { 
+            get
+            {
+                if (cartRepository == null)
+                    cartRepository = new CartRepository(db);
+                return cartRepository;
+            }
+}
 
-        public void Save()
+public void Save()
         {
             db.SaveChanges();
         }

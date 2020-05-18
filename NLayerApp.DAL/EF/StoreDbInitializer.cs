@@ -17,7 +17,7 @@ namespace NLayerApp.DAL.EF
             db.Products.Add(new Entities.Product { Name = "Samsung Note 10", Company = "Samsung", Price = 1100, Category = "Phone", img = "~/wwwroot/image/Product/samsung-galaxy-s20-plus.jpg" });
             db.Products.Add(new Entities.Product { Name = "AirPods", Company = "Aplle", Price = 400, Category = "Accessories", img = "~/wwwroot/image/Product/airpods.jpg" });
             db.Products.Add(new Entities.Product { Name = "Buds", Company = "Samsung", Price = 300, Category = "Accessories", img = "~/wwwroot/image/Product/samsung_buds.jpg" });
-            //db.Carts.Add(new Entities.CartLine { Product = null, Quantity = 0 });
+            //db.Carts.Add(new Entities.CartLine());
 
             db.SaveChanges();
         }

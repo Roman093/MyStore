@@ -13,49 +13,43 @@ namespace NLayerApp.WEB.Controllers
 {
     public class CartController : Controller
     {
-        //IUnitOfWork repository;
-        //public CartController(IUnitOfWork repo)
-        //{
-        //    repository = repo;
-        //}
-        //public ViewResult Index(string returnUrl)
-        //{
-        //    return View(new CartIndexViewModel
-        //    {
-        //        Cart = GetCart(),
-        //        ReturnUrl = returnUrl
-        //    });
-        //}
-        ////    public RedirectToRouteResult AddToCart(int Id, string returnUrl)
-        ////{
-        ////    ProductDTO product = repository.Products
-        ////        .FirstOrDefault(p => p.Id == Id);
+        IOrderService cartService;
 
-        ////    if (product != null)
-        ////    {
-        ////        GetCart().AddItem(product, 1);
-        ////    }
-        ////    return RedirectToAction("Index", new { returnUrl });
-        ////}
+        public CartController(IOrderService serv)
+        {
+            cartService = serv;
+        }
 
-        ////public RedirectToRouteResult RemoveFromCart(int Id, string returnUrl)
-        ////{
-        ////    Product product = repository.Products
-        ////        .FirstOrDefault(p => p.id == Id);
+        public RedirectToRouteResult AddToCart(int id, string returnUrl)
+        {
+            ProductDTO product = cartService.GetProduct(id);
+            var cart = new CartViewModel { ProductId = product.Id };
 
-        ////    if (product != null)
-        ////    {
-        ////        GetCart().RemoveLine(product);
-        ////    }
-        ////    return RedirectToAction("Index", new { returnUrl });
-        ////}
+            if (product != null)
+            {
+                //GetCart().Add(product, 1);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
+
+        public RedirectToRouteResult RemoveFromCart(int id, string returnUrl)
+        {
+            ProductDTO product = cartService.GetProduct(id);
+            var cart = new CartViewModel { ProductId = product.Id };
+
+            if (product != null)
+            {
+                //GetCart().Remove(product);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
 
         //public Cart GetCart()
         //{
-        //    Cart cart = (Cart)Session["Cart"];
+        //    CartLineDTO cart = (CartLineDTO)Session["Cart"];
         //    if (cart == null)
         //    {
-        //        cart = new Cart();
+        //        cart = new CartLineDTO();
         //        Session["Cart"] = cart;
         //    }
         //    return cart;

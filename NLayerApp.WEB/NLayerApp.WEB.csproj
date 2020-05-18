@@ -155,7 +155,7 @@
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
     <Compile Include="Mapping\ProductMapp.cs" />
     <Compile Include="Models\Cart.cs" />
-    <Compile Include="Models\CartIndexViewModel.cs" />
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />

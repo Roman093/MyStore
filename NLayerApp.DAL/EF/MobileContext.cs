@@ -8,7 +8,7 @@ namespace NLayerApp.DAL.EF
     {
         //public DbSet<Phone> Phones { get; set; }
         public DbSet<Product> Products { get; set; }
-        //public DbSet<CartLine> Carts { get; set; }
+        public DbSet<CartLine> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }
 
         static MobileContext()

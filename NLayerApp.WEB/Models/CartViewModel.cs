@@ -6,8 +6,9 @@ using System.Web;
 
 namespace NLayerApp.WEB.Models
 {
-    public class CartIndexViewModel
+    public class CartViewModel
     {
+        public int ProductId {get; set;}
         public Cart Cart { get; set; }
         public string ReturnUrl { get; set; }
     }

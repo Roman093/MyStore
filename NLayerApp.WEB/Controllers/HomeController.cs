@@ -37,7 +37,6 @@ namespace NLayerApp.WEB.Controllers
         //    },
         //CurrentCategory = category;
 
-          
             return View(products);
         }
 
