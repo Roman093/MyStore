@@ -13,21 +13,29 @@ namespace NLayerApp.WEB.Controllers
 {
     public class CartController : Controller
     {
-        IOrderService cartService;
+        ICartService cartService;
 
-        public CartController(IOrderService serv)
+        public CartController(ICartService serv)
         {
             cartService = serv;
         }
+        public ViewResult Index(string returnUrl)
+        {
+            return View(new CartViewModel
+            {
+                //Cart = GetCart(),
+                ReturnUrl = returnUrl
+            });
+        }
 
-        public RedirectToRouteResult AddToCart(int id, string returnUrl)
+        public RedirectToRouteResult Add(int id, string returnUrl)
         {
             ProductDTO product = cartService.GetProduct(id);
             var cart = new CartViewModel { ProductId = product.Id };
 
             if (product != null)
             {
-                //GetCart().Add(product, 1);
+                GetCart().Add(product, 1);
             }
             return RedirectToAction("Index", new { returnUrl });
         }
@@ -39,20 +47,20 @@ namespace NLayerApp.WEB.Controllers
 
             if (product != null)
             {
-                //GetCart().Remove(product);
+                GetCart().Remove(product);
             }
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        //public Cart GetCart()
-        //{
-        //    CartLineDTO cart = (CartLineDTO)Session["Cart"];
-        //    if (cart == null)
-        //    {
-        //        cart = new CartLineDTO();
-        //        Session["Cart"] = cart;
-        //    }
-        //    return cart;
-        //}
+        public CartLineDTO GetCart()
+        {
+            CartLineDTO cart = (CartLineDTO)Session["Cart"];
+            if (cart == null)
+            {
+                cart = new CartLineDTO();
+                Session["Cart"] = cart;
+            }
+            return cart;
+        }
     }
 }

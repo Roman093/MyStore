@@ -1,0 +1,188 @@
+//--------------------------------------------------------------
+//                    Search Form
+//--------------------------------------------------------------
+// input variables
+$form-bg: transparent;
+$form-width: 86%;
+$form-height: 35px;
+$form-border: 1px solid #e5e5e5;
+$form-color: $textPrimary;
+
+// button variables
+$form-submit-color: $primary;
+$form-submit-hover: $textPrimary;
+
+.search{
+	position: relative;
+	width: 100%;
+	padding: 0;
+	z-index: 1000;
+	input[type="text"] {
+		float: left;
+		color: $form-color;
+		display: block;
+		margin: 0;
+		font-size: 14px;
+		line-height: 18px;
+		text-transform: none;
+		font-weight: 400;
+		padding: 0 20px;
+		width: $form-width;
+		height: $form-height;
+		background: $form-bg;
+		border: $form-border;
+		@include border-radius(4px 0 0 4px);
+		@include box-sizing(border-box);
+		&:focus{
+			outline: none;
+		}
+		&::-webkit-input-placeholder{
+			color: $form-color!important;
+			opacity: 1;
+		}
+		&:-moz-placeholder{
+			color: $form-color!important;
+			opacity: 1;
+		}
+		&::-moz-placeholder{
+			color: $form-color!important;
+			opacity: 1;
+		}
+		&:-ms-input-placeholder  {
+			color: $form-color!important;
+			opacity: 1;
+		}
+		&:focus::-webkit-input-placeholder {color: transparent!important;}
+		&:focus::-moz-placeholder          {color: transparent!important;}
+		&:focus:-moz-placeholder           {color: transparent!important;}
+		&:focus:-ms-input-placeholder      {color: transparent!important;}
+	}
+
+	button, button:focus, button:active {
+		@include reset-button;
+		@include transition(.3s all ease);
+		float: left;
+		width: 14%;
+		background: $primary;
+		@include border-radius(0 4px 4px 0);
+		padding: 0;
+		height: $form-height;
+		color: $textSecondary;
+		background: $form-submit-color;
+		font: 300 14px/35px $baseFontFamily;
+		i {
+			display: none;
+		}
+	}
+
+	button:hover, button:focus:hover, button:active:hover {
+		background: $form-submit-hover;
+	}
+}
+
+
+/*--------------------------------------------------------------
+                    Live Search
+--------------------------------------------------------------*/
+#livesearch_search_results {
+	margin: 37px 0 0;
+	padding: 1px;
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	left: 0;
+	background-color: $dropdown-bg;
+	list-style-type: none;
+	z-index: 12;
+	font-size: 14px;
+	line-height: 18px;
+	border: 1px solid $borderColor;
+	@include border-radius(3px);
+	text-transform: none;
+	max-height: 500px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	text-align: left;
+	li{
+		@include transition(all .3s ease);
+		img{
+			float: left;
+			margin-right: 10px;
+			&.loading{
+				background: #fcfcfc;
+			}
+		}
+		&:hover,&.highlighted{
+			background: #fcfcfc;
+			a,a:visited{
+				color: $primary;
+			}
+		}
+		&+li {
+			padding-top: 3px;
+			border-top: 1px solid $borderColor;
+		}
+	}
+	a,a:visited{
+		display: block;
+		padding: 5px;
+		color: $textPrimary;
+		@include clearfix;
+		&:hover{
+			color: $primary;
+		}
+	}
+}
+
+/*--------------------------------------------------------------
+                    Responsive Search Form Layout
+--------------------------------------------------------------*/
+
+@media (min-width: 768px) and (max-width: 991px) {
+	#livesearch_search_results li img{
+		display: none!important;
+	}
+}
+
+@media (max-width: 1199px) {
+	.search {
+		input[type="text"] {
+			width: 75%;
+		}
+		button {
+			width: 25%;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.search{
+		padding: 0;
+		z-index: auto;
+		input[type="text"] {
+			width: 85%;
+			&::-webkit-input-placeholder{
+				opacity: 0;
+			}
+			&:-moz-placeholder{
+				opacity: 0;
+			}
+			&::-moz-placeholder{
+				opacity: 0;
+			}
+			&:-ms-input-placeholder  {
+				opacity: 0;
+			}
+		}
+		button {
+			width: 15%;
+			font-size: 16px;
+			span {
+				display: none;
+			}
+			i {
+				display: block;
+			}
+		}
+	}
+}

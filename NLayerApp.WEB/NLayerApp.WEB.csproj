@@ -230,10 +230,32 @@
     <Content Include="Views\Home\MakeOrder.cshtml" />
     <Content Include="Views\Shared\StoreSummary.cshtml" />
     <Content Include="Views\Nav\Menu.cshtml" />
-    <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="wwwroot\css\bootstrap-theme.css.map" />
     <Content Include="wwwroot\css\bootstrap.css.map" />
     <Content Include="Views\Home\Phone.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="wwwroot\css\style\prepros-6.config" />
+    <Content Include="wwwroot\css\style\rtl.scss" />
+    <Content Include="wwwroot\css\style\style.scss" />
+    <Content Include="wwwroot\css\style\components\_animate.scss" />
+    <Content Include="wwwroot\css\style\components\_bootstrap_reset.scss" />
+    <Content Include="wwwroot\css\style\components\_box.scss" />
+    <Content Include="wwwroot\css\style\components\_buttons.scss" />
+    <Content Include="wwwroot\css\style\components\_cart.scss" />
+    <Content Include="wwwroot\css\style\components\_forms.scss" />
+    <Content Include="wwwroot\css\style\components\_page-preloader.scss" />
+    <Content Include="wwwroot\css\style\components\_product.scss" />
+    <Content Include="wwwroot\css\style\components\_search-form.scss" />
+    <Content Include="wwwroot\css\style\components\menu\_floated-menu.scss" />
+    <Content Include="wwwroot\css\style\components\menu\_fullwidth-menu.scss" />
+    <Content Include="wwwroot\css\style\components\menu\_navbar.scss" />
+    <Content Include="wwwroot\css\style\components\menu\_sf-menu.scss" />
+    <Content Include="wwwroot\css\style\components\menu\_stuck-menu.scss" />
+    <Content Include="wwwroot\css\style\components\widgets\_lazy-img.scss" />
+    <Content Include="wwwroot\css\style\components\widgets\_toTop.scss" />
+    <Content Include="wwwroot\css\style\sections\_content.scss" />
+    <Content Include="wwwroot\css\style\sections\_footer.scss" />
+    <Content Include="wwwroot\css\style\sections\_header.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

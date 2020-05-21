@@ -1,0 +1,59 @@
+#page-preloader {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: url(../../../../../image/catalog/crossword.png) 0 0 repeat;
+	z-index: -1;
+	opacity: 0;
+	@include transition(all 1.3s ease .3s);
+	&.visible {
+		opacity: 1;
+		z-index: 100500;
+		.preloader {
+			opacity: 1;
+			@include transform(translate(-50%, -50%));
+		}
+	}
+	.preloader {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		@include transform(translate(-50%, -50%));
+		@include transition(all .4s ease);
+		opacity: 0;
+		[class*="loader"] {
+			margin: 0 auto;
+			position: relative;
+			color: $textPrimary;
+			font-size: 50px;
+			line-height: 50px;
+			-webkit-animation: loader 2.5s infinite linear;
+			-ms-animation: loader 2.5s infinite linear;
+			animation: loader 2.5s infinite linear;
+		}
+	}
+}
+
+@-webkit-keyframes loader {
+	0%  {
+		@include transform(rotate(0deg));
+	}
+	100% {
+		@include transform(rotate(360deg));
+	}
+}
+
+@-ms-keyframes loader {
+	0%  {
+		-ms-transform: rotate(0deg); // IE9
+		-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0); // IE8
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0); // IE7
+	}
+	100% {
+		-ms-transform: rotate(360deg); // IE9
+		-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); // IE8
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); // IE7
+	}
+}

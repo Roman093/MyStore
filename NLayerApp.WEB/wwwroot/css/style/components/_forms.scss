@@ -1,0 +1,421 @@
+/*========================================================
+                      Form Styles
+=========================================================*/
+//Input
+$inputBackground: #fff;
+$inputColor: $baseColor;
+$inputBorderColor: $borderColor;
+$inputBorderFocus: 0 0 5px $primary;
+$inputHeight: 35px;
+$inputFontSize: 12px;
+$inputLineHeight: 15px;
+$inputBorderRadius: 0px;
+$inputPadding: (($inputHeight - $inputLineHeight)/2) 6px (($inputHeight - $inputLineHeight)/2) 10px;
+
+//Select Arrow
+$select-arrow-width: 40px;
+$select-arrow-icon: '\e071';
+
+// Radio
+$radio-size: 16px;
+$radio-border: 1px solid $borderColor;
+$radio-background: #fff;
+
+$radio-inner-size: 10px;
+$radio-inner-bg: $primary;
+
+//Checkbox
+$checkbox-size: 14px;
+$checkbox-bg: #fff;
+$checkbox-border: 1px solid $borderColor;
+$checkbox-border-radius: 0;
+
+$checkbox-icon: '\f00c';
+$checkbox-icon-color: $primary;
+
+//==============================
+// Input  Styles
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+	display: block;
+	width: 100%;
+	background: $inputBackground;
+	border: 1px solid $inputBorderColor;
+	color: $inputColor;
+	font-size: $inputFontSize;
+	font-weight: 300;
+	height: $inputHeight;
+	line-height: $inputLineHeight;
+	padding: $inputPadding;
+	outline: none;
+	@include box-sizing(border-box);
+	@include border-radius(0);
+	@include transition(.3s all ease);
+	@include box-shadow(none);
+	-webkit-appearance: none;
+	-moz-appearance:    none;
+	appearance:         none;
+	&:focus{
+		@include box-shadow(1px 1px 10px $inputBorderFocus);
+	}
+	&:focus::-webkit-input-placeholder {color: transparent!important;}
+	&:focus::-moz-placeholder          {color: transparent!important;}
+	&:focus:-moz-placeholder           {color: transparent!important;}
+	&:focus:-ms-input-placeholder      {color: transparent!important;}
+}
+.product-options {
+	.checkbox input[type="checkbox"],
+	.radio input[type="radio"] {
+		+ label {
+			border: 1px solid $borderColor;
+			color: #777;
+			@include border-radius(0);
+		}
+	}
+}
+select:hover{
+	cursor: pointer;
+}
+
+input[name*="quantity"] {
+	display: inline-block;
+	width: 35px;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-size: 16px;
+	vertical-align: middle;
+}
+
+input[name="captcha"] {
+	+ img {
+		margin-top: 15px;
+	}
+}
+
+textarea:not([class*="habla"]) {
+	min-height: 200px;
+}
+
+select {
+	display: none;
+}
+
+#modal-shipping {
+	input[type="radio"] {
+		display: inline;
+		float: left;
+		margin-top: 8px;
+	}
+	@media (max-width: 479px) {
+		.btn, #button-shipping {
+			margin-top: 5px;
+		}
+	}
+}
+
+.counter, .counter:focus{
+	display: inline-block;
+	height: $inputHeight;
+	width: $inputHeight;
+	color: $inputColor;
+	background: $inputBackground;
+	line-height: $inputHeight;
+	text-align: center;
+	font-size: 20px;
+	border: 1px solid $borderColor;
+	@include border-radius(0);
+	vertical-align: middle;
+	&:hover{
+		background: $textPrimary;
+		color: #fff;
+		border-color: $textPrimary;
+	}
+	@media (max-width: 991px) {
+		width: 40px;
+	}
+	@media (max-width: 767px) {
+		display: none;
+	}
+}
+
+#product .counter{
+	@media (max-width: 767px){
+		display: inline-block;
+	}
+}
+
+.input-group-btn .btn {
+	height: $inputHeight;
+	padding-top: 0;
+	padding-bottom: 0;
+	@include box-sizing(border-box);
+}
+
+.product-options{
+	.form-group.required {
+		input{
+			@include border-radius(0);
+		}
+		.btn.btn-default{
+			&:after{
+				@include border-radius(0 25px 25px 0);
+			}
+			.glyphicon{
+				top: 3px;
+			}
+		}
+		.sbHolder{
+			@include border-radius(0);
+			.sbSelector{
+				right: $select-arrow-width;
+				@include border-radius(0);
+			}
+		}
+	}
+	.form-group {
+		margin-left: 0;
+		margin-right: 0;
+		text-align: left;
+	}
+}
+
+//==============================
+// Select Styles
+
+.sbHolder {
+	border: 1px solid $borderColor;
+	height: $inputHeight;
+	position: relative;
+	width: 100%;
+	text-align: left;
+	background: $inputBackground;
+	color: $inputColor;
+	@include border-radius($inputBorderRadius);
+	@include transition(.4s all ease);
+	@include box-sizing(border-box);
+	min-width: 120px;
+	&:focus,
+	&:hover {
+		background: #eee;
+		color: $textPrimary;
+	}
+}
+
+.sbSelector {
+	display: block;
+	height: 100%;
+	line-height: 22px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: $select-arrow-width;
+	padding: 6px 10px;
+	background: $inputBackground;
+	overflow: hidden;
+	white-space: nowrap;
+	-ms-text-overflow: ellipsis;
+	@include transition(.4s all ease);
+	text-overflow: ellipsis;
+	color: $inputColor;
+	@include box-sizing(border-box);
+	.ajax-overlay & {
+		padding: 10px;
+		line-height: $inputLineHeight !important;
+	}
+	&:hover {
+		background: #eee;
+		color: $textPrimary;
+	}
+}
+
+//==============================
+// Select Arrow Styles
+
+.sbToggle {
+	display: block;
+	height: 100%;
+	outline: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: $select-arrow-width;
+	text-align: center;
+	color: $inputColor;
+	border-left: 1px solid $borderColor;
+	font-family: $material;
+	line-height: $inputHeight;
+	font-size: 28px;
+	&:before {
+		content: $select-arrow-icon;
+		display: block;
+		@include transition(.5s all ease);
+	}
+	&:hover {
+		color: inherit;
+		& + .sbSelector {
+			background: #eee;
+			color: $textPrimary;
+		}
+	}
+	&Open {
+		&:before {
+			@include transform(rotateX(180deg));
+		}
+	}
+}
+
+.sbHolderDisabled {
+	background-color: #3C3C3C;
+	border: solid 1px $borderColor;
+}
+
+/*==============================
+ Select Dropdown Styles*/
+
+ .sbOptions {
+ 	background-color: $inputBackground;
+ 	list-style: none;
+ 	left: 0;
+ 	margin: 3px 0;
+ 	padding: 10px 0;
+ 	position: absolute;
+ 	right: 0;
+ 	z-index: 4;
+ 	overflow-y: auto;
+ 	@include box-shadow($baseBoxShadow);
+ 	outline: 1px solid $borderColor;
+ 	li {
+ 		a {
+ 			display: block;
+ 			padding: 8px 15px;
+ 			color: $inputColor;
+ 			&:hover {
+ 				background: #eee;
+ 				color: $textPrimary;
+ 			}
+ 		}
+ 	}
+ }
+
+//==============================
+// Radio Styles
+input[type="radio"] {
+	display: none;
+}
+
+input[type="radio"] + label {
+	position: relative;
+	padding-left: 30px;
+	line-height: $baseLineHeight;
+	&:before, &:after {
+		content: '';
+		position: absolute;
+		@include border-radius(50%);
+		@include box-sizing(border-box);
+	}
+	&:before {
+		top: 3px;
+		left: 0;
+		width: $radio-size;
+		height: $radio-size;
+		border: 1px solid $borderColor;
+		background: $radio-background;
+	}
+	&:after {
+		top: 6px;
+		left: 3px;
+		width: 10px;
+		height: 10px;
+		@include transition(.3s all ease);
+	}
+}
+
+input[type="radio"]:checked + label:after {
+	background: $radio-inner-bg;
+}
+
+.radio-inline {
+	margin-right: 5px;
+}
+
+//==============================
+// Checkbox Styles
+input[type="checkbox"] {
+	display: none;
+}
+
+input[type="checkbox"] + label {
+	position: relative;
+	padding-left: 20px;
+	cursor: pointer;
+	&:before, &:after {
+		content: '';
+		position: absolute;
+		@include box-sizing(border-box);
+		top: ($baseLineHeight - $checkbox-size)/2;
+		left: 0;
+		width: $checkbox-size;
+		height: $checkbox-size;
+	}
+	&:before {
+		background: $checkbox-bg;
+		border: $checkbox-border;
+		@include border-radius($checkbox-border-radius);
+	}
+	&:after {
+		text-align: center;
+		line-height: $checkbox-size;
+		font-family: $fa;
+		color: $checkbox-icon-color;
+	}
+}
+
+input[type="checkbox"]:checked + label:after {
+	content: $checkbox-icon;
+}
+
+input[type="checkbox"][disabled] + label {
+	color: lighten($baseColor,30%);
+	display: none;
+}
+
+input[type="checkbox"][name="agree"] + label{
+	margin-bottom: $baseLineHeight/2;
+	&:before,&:after{
+		top: 0;
+	}
+}
+
+#at15s, #at20mc {
+	z-index: 999 !important;
+}
+
+#product label {
+	color: $inputColor!important;
+}
+
+#modal-shipping input[type="radio"] {
+	margin-top: 3px;
+}
+
+.has-error .form-control {
+	border-color: red;
+	&:focus {
+		border-color: red;
+	}
+}

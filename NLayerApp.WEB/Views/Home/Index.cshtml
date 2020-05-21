@@ -10,7 +10,7 @@
 }
 
 @*<h2>Store</h2>*@
-<link href="~wwwroot/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="~/wwwroot/css/bootstrap.css" rel="stylesheet" type="text/css" />
 <div class="row" mt-5 mb-2">
     @foreach (var p in Model)
     {
@@ -27,9 +27,10 @@
         <h4>
             @p.Price.ToString("# $")
         </h4>
-        <td>
+        <button>
             @Html.ActionLink("Order", "MakeOrder", new { id = p.Id })
-        </td>
+
+        </button>
     </div>
     }
 </div>

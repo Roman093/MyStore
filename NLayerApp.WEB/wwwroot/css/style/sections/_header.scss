@@ -1,0 +1,387 @@
+$dropdown-bg: #ebeaea;
+
+header {
+	background: $headerBg;
+	margin-bottom: 30px;
+	.box-cart {
+		@media (min-width: 768px) {
+			float: right;
+			text-align: center;
+			position: relative;
+			width: 19.6%;
+			min-height: 60px;
+			background: $primary;
+			@include border-radius(0 3px 0 0);
+		}
+	}
+	.top-line {
+		padding: 15px 0 4px;
+	}
+	.mid-line {
+		padding: 10px 0 20px;
+	}
+	.logo {
+		margin-top: -12px;
+	}
+	.header_modules {
+		float: right;
+		margin: 0 10px;
+	}
+	.phone {
+		text-align: right;
+		margin-top: 7px;
+		font-size: 21px;
+		line-height: 30px;
+		font-weight: 500;
+		color: $textPrimary;
+		i {
+			color: $primary;
+			margin-right: 10px;
+			position: relative;
+		}
+	}
+	.fl-left {
+		float: left;
+	}
+	.fl-right {
+		float: right;
+	}
+}
+
+.demo-border{
+	border-bottom: 1px solid #fff;
+	background: #34b1da;
+	padding: 5px 0;
+	
+	a{
+		margin-bottom: 0;
+	}
+}
+/*================  Toggle ===============*/
+
+.toggle {
+	&_cont {
+		display: none;
+		background: $dropdown-bg;
+		padding: 5px 0 10px;
+		list-style-type: none;
+		position: absolute;
+		left: 0;
+		right: auto;
+		top: 100%;
+		width: 180px;
+		line-height: 29px;
+		z-index: 999;
+		> li {
+			display: block;
+			> a, > button {
+				text-align: left;
+				display: inline-block;
+				padding: 2px 18px;
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 27px;
+				color: $textPrimary;
+				i {
+					margin-right: 5px;
+					font-size: 14px;
+					position: relative;
+					display: inline-block;
+					top: 0;
+				}
+				&:hover {
+					background: transparent;
+					color: $primary;
+				}
+			}
+		}
+		ul {
+			font-size: 16px;
+			z-index: 999;
+			li + li {
+				border-top: 0;
+			}
+		}
+		&__right {
+			left: 0px;
+			top: 38px;
+			> li > a{
+				&:hover{
+					background: transparent;
+					color: $primary;
+				}
+			}
+		}
+	}
+}
+
+/*================   Top Links style   ===============*/
+$top-links-item-margin: 20px;
+
+header .nav {
+	@media (min-width: 768px) {
+		float: left;
+		background: #464646;
+		padding: 0;
+		width: 80.4%;
+		min-height: 60px;
+		position: relative;
+		@include border-radius(3px 0 0 0);
+		> .toggle {
+			display: none;
+		}
+		> .toggle_cont {
+			display: block !important;
+			padding: 0;
+			margin: 0;
+			background: none;
+			line-height: 24px;
+			color: $textSecondary;
+			width: auto;
+			text-align: left;
+			position: absolute;
+			top: 50%;
+			left: 25px;
+			right: 25px;
+			bottom: 0;
+			@include transform(translateY(-50%));
+			> li {
+				display: inline-block;
+				position: relative;
+				> a {
+					display: inline-block;
+					font-size: 14px;
+					font-weight: 300;
+					padding: 0;
+					color: $textSecondary;
+					i {
+						color: $primary;
+						position: relative;
+						margin-right: 10px;
+						@include transition(all .3s ease);
+					}
+					&:hover, &.current {
+						background: transparent;
+						color: $primary;
+					}
+				}
+				& + li {
+					margin-left: $top-links-item-margin;
+				}
+			}
+		}
+	}
+	@media (max-width: 767px) {
+		position: fixed;
+		top: 0;
+		margin: 0;
+		z-index: 10000;
+		@include transition(0.5s all ease);
+		.toggle-wrap {
+			.toggle {
+				display: none;
+			}
+			.toggle_cont {
+				display: block !important;
+				height: auto !important;
+				position: static;
+				padding: 0;
+				@include transition(0);
+				li + li {
+					border-top: 0;
+				}
+			}
+		}
+	}
+}
+
+/*================  CURRENCY AND LANGUAGE BOXES ===============*/
+.box-language,
+.box-currency {
+	padding: 0;
+	margin: 0 11px 0 10px;
+	position: relative;
+	line-height: 23px;
+	display: inline-block;
+	float: right;
+	.toggle {
+		display: inline-block;
+		line-height: 24px;
+		font-size: 12px;
+		font-weight: 300;
+		padding: 0;
+		color: $baseColor;
+		cursor: pointer;
+		@include transition(all 0.3s ease);
+		&:after {
+			display: inline-block;
+			content: '\f107';
+			font-size: 11px;
+			font-family: $fa;
+			position: absolute;
+			right: -10px;
+			top: 1px;
+		}
+		&.active, &:hover {
+			color: $primary;
+		}
+		&_cont {
+			right: -11px;
+			left: auto;
+			top: 34px;
+			padding: 10px 0;
+			margin: 0;
+			> li {
+				> a, > button {
+					&:hover, &.selected {
+						background: transparent;
+						color: $primary;
+					}
+				}
+				& + li {
+					border-top: 0;
+				}
+			}
+		}
+	}
+}
+
+/*========================================================
+               Responsive Header styles
+=========================================================*/
+
+
+@media (max-width: 1199px) {
+	header .nav > .toggle_cont > li > a i {
+		margin-right: 7px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	header .nav > .toggle_cont > li > a {
+		i {
+			font-size: 24px;
+		}
+		span {
+			display: none;
+		}
+		&:hover {
+			i {
+				color: #fff;
+			}
+		}
+	}
+}
+
+@media (max-width: 991px) {
+	header {
+		.mid-line {
+			padding: 15px 0 20px;
+		}
+		.nav {
+			width: 70%;
+			> .toggle_cont {
+				text-align: center;
+				> li > a i {
+					line-height: 30px;
+				}
+			}
+		}
+		.box-cart {
+			width: 30%;
+		}
+		.phone {
+			margin-top: 3px;
+			font-size: 18px;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	header {
+		.header_modules {
+			padding: 0;
+			margin: 0;
+			float: none;
+			text-align: left;
+		}
+		.mid-line {
+			padding: 20px 0 30px;
+		}
+		.wishlist {
+			margin-right: 0;
+			i {
+				font-size: 12px;
+			}
+		}
+		.logo {
+			margin: 0 0 25px;
+			img {
+				display: inline-block;
+			}
+		}
+		.box-cart {
+			float: none;
+		}
+		.nav{
+			width: auto;
+			.toggle_cont {
+				right: -35px;
+				left: auto;
+				text-align: left;
+				padding-left: 15px;
+				padding-right: 15px;
+				margin-top: -1px;
+				> li {
+					a{
+						font-weight: 400;
+						padding: 0;
+						font-size: 11px;
+						span b {
+							font-weight: 400;
+						}
+					}
+					& + li {
+						padding-left: 0;
+					}
+				}
+			}
+		}
+		.toggle-wrap-single {
+			margin-left: 33px;
+		}
+		.box-language, 
+		.box-currency {
+			margin: 0 11px 0 15px;
+		}
+		.box-language .toggle_cont,
+		.box-currency .toggle_cont {
+			top: 33px;
+		}
+		.toggle_cont > li {
+			margin: 0 !important;
+		} 
+	}
+	.navigation {
+		display: none;
+	}
+}
+
+@media (max-width: 480px) {
+	header{
+		[class*="col-xs"] {
+			width: 100%;
+			float: none;
+		}
+		.top-line {
+			.col-xs-6 {
+				width: 50%;
+				float: left;
+			}
+		}
+		.phone {
+			text-align: left;
+			margin-bottom: 15px;
+		}
+	}
+}

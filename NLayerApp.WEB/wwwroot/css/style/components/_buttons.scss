@@ -1,0 +1,286 @@
+/*========================================================
+                        Buttons
+=========================================================*/
+#button-search {
+	+ h2 {
+		margin-top: 15px;
+	}
+}
+
+.buttons {
+	margin: 1em 0;
+	@include clearfix;
+	.btn{
+		margin-bottom: 10px;
+		&:hover{
+			@include box-shadow(none);
+		}
+		i, span {
+			vertical-align: middle;
+		}
+		i{
+			font-size: 24px;
+			margin: 0 5px;
+			display: inline-block;
+			line-height: $baseLineHeight;
+		}
+	}
+	.pull-left,
+	.pull-right {
+		.btn{
+			&:hover {
+
+			}
+		}
+		[for="agree1"] + .btn {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.input-group-btn .btn {
+	i {
+		font-size: 15px;
+		line-height: 18px;
+	}
+}
+
+.agree{
+	b{
+		@include transition(.3s all ease);
+	}
+	&:hover b{
+		color: $primary;
+	}
+}
+
+/* ================   Default Buttons BEGIN   =============== */
+
+.btn, .btn-1, .btn-default, .btn.btn-primary, input.btn.btn-primary, .btn-primary, .btn-success, .btn-info, .btn-warning {
+	position: relative;
+	overflow: hidden;
+	text-transform: capitalize;
+	padding: 5px 29px;
+	font-weight: 400;
+	line-height: 25px;
+	font-size: 14px;
+	color: #fff;
+	@include transition(all 0.4s ease);
+	@include border-radius(4px);
+	display: inline-block;
+	background: #464646;
+	text-decoration: none;
+	&:hover {
+		color: #fff;
+		background: $primary;
+	}
+	[lang="ru"] & {
+		font-size: 13px;
+		letter-spacing: 0;
+	}
+	&:visited,
+	&:focus {
+		background: #464646;
+		color: #fff;
+		outline: none !important;
+		text-decoration: none;
+		&:hover {
+			color: #fff;
+			background: $primary;
+		}
+	}
+}
+
+.btn-primary.active, 
+.btn-primary:active, 
+.open > .dropdown-toggle.btn-primary {
+	background: $textPrimary;
+	color: #fff;
+}
+
+.form-horizontal{
+	.input-group-btn{
+		.btn.btn-default{
+			&:after{
+				@include border-radius(0);
+			}
+		}
+	}
+}
+.account-return-add{
+	.btn.btn-default{
+		i{
+			display: block;
+		}
+	}
+}
+
+.btn-icon {
+	& i{
+		display: block;
+		font-size: 24px;
+		color: gray;
+	}
+	&:after{
+		display: none;
+	}
+	&:hover{
+		i{
+			color: $primary;
+		}
+	}
+}
+
+.product-btn {
+	position: relative;
+	font-size: 24px;
+	padding: 5px;
+	color: #d2dae3;
+	@include transition(.4s all ease);
+	&:hover{
+		color: $primary;
+	}	
+}
+
+/* ================   QuickView  =============== */
+.product-thumb .image > .quickview {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	display: inline-block;
+	opacity: 0;
+	@include translate(-50%,-50%);
+	z-index: 1;
+	padding: 12px 15px;
+	letter-spacing: 0;
+	font-size: 16px;
+	line-height: 24px;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin: 0;
+	color: $primary;
+	@include transition(all 0.4s ease);
+	background-color: #fff;
+	border: 1px solid $primary;
+	z-index: 1;
+	.megamenu & {
+		display: none;
+	}
+	&:hover {
+		background: $primary;
+		color: #fff;
+	}
+	& span {
+		position: relative;
+		z-index: 3;
+	}
+}
+
+
+/* ================   Product page buttons  =============== */
+.product-buttons {
+	@include clearfix;
+	margin: 0;
+	padding: 0;
+	li {
+		display: inline-block;
+		margin-right: 10px;
+		margin-bottom: 1px;
+		list-style: none;
+	}
+}
+
+#button-cart {
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: middle;
+	letter-spacing: 0;
+	float: left;
+	&:disabled {
+		pointer-events: none;
+		opacity: .5;
+	}
+}
+
+/* ================   Tooltip  ================= */
+.tooltip-inner {
+	background: $primary;
+}
+[class][class].tooltip-arrow {
+	border-top-color: $primary;
+}
+/*========================================================
+                 Responsive styles Buttons
+=========================================================*/
+
+@media (max-width: 1199px) {
+	.btn, .btn-1, .btn-default, .btn.btn-primary, .btn-primary, .btn-success, .btn-info, .btn-warning {
+
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	.account-wishlist table td .btn {
+		padding: 10px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.table-bordered > tbody > tr > .text-right {
+		padding: 5px;
+	}
+	.account-wishlist table td .btn {
+		padding: 6px;
+	}
+}
+
+@media (max-width: 767px) {
+	#grid-view,#list-view {
+		display: none;
+	}
+	.product-btn.quickview,
+	.product-thumb .image > .quickview {
+		display: none;
+	}
+	.table {
+		.btn {
+			margin-bottom: 3px;
+		}
+	}
+}
+
+@media (max-width: 479px) {
+	.buttons {
+		.pull-left, .pull-right {
+			float: none !important;
+			margin-left: 0;
+		}
+	}
+	#button-cart{
+		display: block;
+		margin: 15px 0;
+		width: 100%;
+	}
+}
+
+@media (max-width: 410px) {
+	.account-address {
+		.table td a {
+			display: block;
+			+ a {
+				margin-top: 5px;
+			}
+		}
+	}
+}
+
+
+.btn-block{
+	.counter{
+		margin: 2px;
+		color: #333!important;
+		&:hover{
+			color: #fff!important;
+		}
+	}
+}

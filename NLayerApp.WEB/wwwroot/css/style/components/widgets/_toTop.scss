@@ -1,0 +1,50 @@
+﻿/*
+* @subsection   ToTop
+* @license      MIT license - http://opensource.org/licenses/MIT
+* @version      1.0.0
+*/
+
+$screen-xs-min: 480px;
+$box-shadow-ambient: 0 0 2px rgba(0, 0, 0, .12);
+$box-shadow-key-light: 2px 3px 8px 0px rgba(0, 0, 0, 0.3);
+
+.ui-to-top {
+	&, &:visited, &:focus{
+		color: #000;
+
+	}
+	width: 46px;
+	height: 46px;
+	font-size: 36px;
+	line-height: 44px;
+	background: transparent;
+	
+	@include border-radius(50%);
+	position: fixed;
+	right: 20px;
+	bottom: 65px;
+	overflow: hidden;
+	text-align: center;
+	text-decoration: none;
+	z-index: 20;
+	border: 0;
+	@include transform(translateY(120px) scale(0));
+	&:hover {
+		color: $primaryLight;
+	}
+	&.active{
+		@include transform(translateY(0px) scale(1));
+	}
+}
+
+.mobile .ui-to-top,
+.tablet .ui-to-top {
+	display: none !important;
+}
+
+@media (max-width: 767px){
+	.ui-to-top {
+		right: 8px;
+		bottom: 30px;
+	}
+}

@@ -1,0 +1,290 @@
+/*================ Box Cart  ===============*/
+$close-button-color: $primary;
+
+.box-cart {
+	.btn-remove {
+		&-wrap, &__cnt {
+			position: absolute;
+			left: 0;
+			right: 0;
+			i{
+				font-size: 20px;
+			}
+		}
+		&-wrap {
+			top: 0;
+			bottom: 0;
+			z-index: 10;
+			color: $textSecondary;
+			display: none;
+			background: #eee;
+		}
+		&__cnt {
+			top: 50%;
+			@include transform(translateY(-50%));
+			.link{
+				display: inline-block;
+				margin: 0 13px;
+				color: $primary;
+				&:hover{
+					color: $textPrimary;
+				}
+			}
+		}
+	}
+	.btn-danger,.btn-danger:focus {
+		border: 0;
+		padding: 0;
+		color: $close-button-color;
+		font-size: 15px;
+		background: none;
+		&:hover {
+			color: $primary;
+			background: none;
+		}
+		&:focus {
+			box-shadow: none;
+		}
+	}
+	a:hover img {
+		opacity: .6;
+	}
+	.fl-left {
+		float: left;
+		width: 25%;
+	}
+	.fl-right {
+		float: right;
+		width: 62%;
+		margin-right: 7%;
+		line-height: 28px;
+	}
+	.btn-remove {
+		position: absolute;
+		right: 8px;
+		top: 12px;
+		line-height: 20px;
+		color: $close-button-color;
+		i{
+			font-size: 18px;
+			line-height: 20px;
+			@include transition(.4s all ease);
+		}
+		&:hover {
+			color: $textPrimary;
+		}
+	}
+}
+
+/*================  Cart  ===============*/
+.cart {
+	@media (min-width: 768px) {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 50%;
+		bottom: 0;
+		z-index: 10;
+		@include transform(translateY(-50%));
+	}
+	> button {
+		text-transform: none;
+		position: relative;
+		text-align: right;
+		&:after {
+			position: relative;
+			margin-left: 20px;
+			content: '\ec3a';
+			font-family: $linear;
+			font-size: 14px;
+			top: 4px;
+			color: #fff;
+			display: inline-block;
+			@include transition(all 0.3s ease);
+		}
+		i,strong,span{
+			vertical-align: middle;
+			font-weight: 300;
+			font-size: 14px;
+			color: $textSecondary;
+			@include transition(.4s all ease);
+		}
+		i{
+			float: left;
+			position: relative;
+			top: 0;
+			font-size: 24px;
+			margin-right: 10px;
+			color: #fff;
+			@include transition(all 0.3s ease);
+		}
+		em {
+			font-style: normal;
+		}
+		strong {
+			font-weight: 300;
+		}
+		span{
+			font-family: $secFontFamily;
+			@include transition(all 0.3s ease);
+			b {
+				display: none;
+				font-weight: 300;
+			}
+		}
+		&.active,
+		&:hover {
+			&:after,i,strong,span{
+				color: $primaryLight;
+			}
+		}
+	}
+
+	.cart-remove-btn{
+		margin-left: 5px;
+		&:before, > span {
+			vertical-align: middle;
+		}
+		&:before{
+			margin-right: 5px;
+		}
+	}
+	.btn-l,
+	.btn-r{
+		float: left;
+		width: 49.3%;
+		padding-left: 5px;
+		padding-right: 5px;
+		font-size: 12px;
+		&:hover{
+
+		}
+	}
+	.btn-r{
+		float: right;
+	}
+	.name {
+		margin-bottom: 3px;
+		a {
+			text-transform: none;
+			line-height: 19px;
+			font-size: 14px;
+			font-weight: 500;
+			&:hover{
+				color: $primary;
+			}
+		}
+	}
+	.quant {
+		background: #eee;
+		padding: 3px 12px;
+		margin: 0 10px 0 0;
+		font-size: 16px;
+		color: $baseColor;
+	}
+	.price-cart {
+		color: $textPrimary;
+		font-weight: bold;
+		font-size: 14px;
+		margin-left: 6px;
+	}
+}
+
+/*================  Cart DropDown ===============*/
+
+.cart .toggle_cont {
+	z-index: 1001;
+	min-width: 279px;
+	padding: 0;
+	max-height: 434px;
+	right: 0;
+	left: auto;
+	top: 155%;
+	list-style-type: none;
+	color: $textPrimary;
+	margin: 0;
+	border: 0;
+	overflow-y: auto;
+	overflow-x: hidden;
+	text-align: left;
+	@include box-shadow(0 5px 5px rgba(0,0,0,.05));
+	p{
+		margin: 0;
+		font-size: 11px;
+		text-transform: uppercase;
+		font-weight: 400;
+	}
+	> li{
+		position: relative;
+		overflow: hidden;
+		padding: 12px;
+		&+li{
+			border-top: 1px solid rgba(0,0,0,.1);
+		}
+	}
+	.total {
+		list-style-type: none;
+		>.t-row{
+			position: relative;
+			overflow: hidden;
+			font-size: 15px;
+			>div{
+				width: 64%;
+				float: left;
+				line-height: 28px;
+				vertical-align: middle;
+				b{
+					font-weight: 500;
+					color: $textPrimary;
+				}
+				&+div{
+					width: 36%;
+				}
+				em{
+					color: $textPrimary;
+					font-style: normal;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 1199px) {
+	.cart > button{
+		&:after {
+			margin-left: 7px;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.cart {
+		position: fixed;
+		top: 0;
+		margin: 0;
+		z-index: 10001;
+		> button {
+			position: relative;
+			&:after {
+				display: none;
+			}
+			.cart-total{
+				em {
+					display: none;
+				}
+			}
+			.cart-total2{
+				margin-left: 5px;
+			}
+		}
+		.toggle_cont {
+			max-height: 260px;
+			overflow: auto;
+			right: -30px;
+			margin: 0;
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+	}
+}

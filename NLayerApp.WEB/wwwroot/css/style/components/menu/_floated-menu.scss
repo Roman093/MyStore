@@ -1,0 +1,18 @@
+//--------------------------------------------------------------
+//                       Floated menu
+//--------------------------------------------------------------
+$item-margin: 20px;
+
+.sf-menu{
+  @include clearfix;
+  display: inline-block;
+
+  > li {
+    position: relative;
+    float: left;
+
+    & + li {
+      margin-left: $item-margin;
+    }
+  }
+}
