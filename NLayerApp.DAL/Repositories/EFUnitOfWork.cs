@@ -21,14 +21,6 @@ namespace NLayerApp.DAL.Repositories
         {
             db = new MobileContext(connectionString);
         }
-        //public IRepository<Phone> Phones
-        //{
-        //    get
-        //    {
-        //        if (phoneRepository == null)
-        //            phoneRepository = new PhoneRepository(db);
-        //        return phoneRepository;
-        //    }
         public IRepository<Product> Products
         {
             get

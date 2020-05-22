@@ -7,15 +7,28 @@
 
 @foreach (var link in Model)
 {
-    @Html.RouteLink(link, new
-{
-    controller = "Home",
-    action = "Index",
-    category = link,
-    page = 1
-}, new
-{
-    @class = "btn btn-block btn-default btn-lg"
-         + (link == ViewBag.SelectedCategory ? " btn-primary" : "")
-})
+        @Html.RouteLink(link, new
+    {
+        controller = "Home",
+        action = "Index",
+        category = link,
+        page = 1
+    }, new
+    {
+        @class = "btn btn-block btn-default btn-lg"
+             + (link == ViewBag.SelectedCategory ? " btn-primary" : "")
+    })
 }
+
+@*<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Category <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Phone</a></li>
+        <li><a href="#">C#</a></li>
+        <li><a href="#">VB.NET</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Java</a></li>
+    </ul>
+</div>*@

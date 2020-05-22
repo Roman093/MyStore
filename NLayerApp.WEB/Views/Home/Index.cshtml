@@ -10,8 +10,8 @@
 }
 
 @*<h2>Store</h2>*@
-<link href="~/wwwroot/css/bootstrap.css" rel="stylesheet" type="text/css" />
-<div class="row" mt-5 mb-2">
+<link href="~/wwwroot/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+<div class="row mt-5 mb-2">
     @foreach (var p in Model)
     {
     <div class="col-lg-4">
@@ -27,13 +27,21 @@
         <h4>
             @p.Price.ToString("# $")
         </h4>
-        <button>
-            @Html.ActionLink("Order", "MakeOrder", new { id = p.Id })
+        <p><a class="btn-warning" href="#">Details</a></p>
+        <button type="button" class="btn btn-default"> @Html.ActionLink("Order", "MakeOrder", new { id = p.Id })</button>
 
-        </button>
     </div>
     }
 </div>
+<ul class="pagination">
+    <li><a href="#">«</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">»</a></li>
+</ul>
 
 @*<div class="btn-group">
         @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
