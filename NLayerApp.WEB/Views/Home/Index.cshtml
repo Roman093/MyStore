@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<ProductViewModel>
-@*@model ProductListViewModel*@
 @using NLayerApp.WEB.HtmlHelpers
 @using NLayerApp.WEB.Models
 
@@ -17,21 +16,24 @@
     <div class="col-lg-4">
         <img class=" img-thumbnail" src="@p.img" accesskey="@p.Name" />
         <h3>
-
             @Html.DisplayFor(modelP => p.Name)
         </h3>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Company)
-        </td>*@
-
+        <h4>
+            @Html.DisplayFor(modelP => p.Company)
+        </h4>
+        <h4>
+            @Html.DisplayFor(modelP => p.Details)
+        </h4>
         <h4>
             @p.Price.ToString("# $")
         </h4>
-        <p><a class="btn-warning" href="#">Details</a></p>
+        <p><a class="btn-warning" href="#">More</a></p>
         <button type="button" class="btn btn-default"> @Html.ActionLink("Order", "MakeOrder", new { id = p.Id })</button>
 
     </div>
-    }
+   
+        }
+
 </div>
 <ul class="pagination">
     <li><a href="#">«</a></li>

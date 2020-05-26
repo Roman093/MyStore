@@ -23,19 +23,11 @@ namespace NLayerApp.WEB.Controllers
         public ActionResult Index(int page = 1)
         {
 
-                IEnumerable < ProductDTO > productDtos = orderService.GetProducts();
+            IEnumerable<ProductDTO> productDtos = orderService.GetProducts();
 
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ProductDTO, ProductViewModel>()).CreateMapper();
             var products = mapper.Map<IEnumerable<ProductDTO>, List<ProductViewModel>>(productDtos);
-        //        .Skip((page - 1) * pageSize)
-        //        .Take(pageSize);
-        //    PagingInfo PagingInfo = new PagingInfo
-        //    {
-        //        CurrentPage = page,
-        //        ItemsPerPage = pageSize,
-        //        TotalItems = orderService.GetProducts().Count()
-        //    },
-        //CurrentCategory = category;
+
 
             return View(products);
         }

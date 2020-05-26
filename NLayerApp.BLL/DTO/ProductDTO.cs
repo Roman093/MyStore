@@ -12,6 +12,7 @@ namespace NLayerApp.BLL.DTO
         public string Name { get; set; }
         public string Company { get; set; }
         public string Category { get; set; }
+        public string Details { get; set; }
         public decimal Price { get; set; }
         public string img { get; set; }
     }

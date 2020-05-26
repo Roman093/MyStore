@@ -13,36 +13,11 @@ namespace NLayerApp.WEB
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(null,
-                "",
-                new
-                {
-                    controller = "Home",
-                    action = "Index",
-                    category = (string)null,
-                    page = 1
-                }
-            );
-
             routes.MapRoute(
-                name: null,
+                name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", category = (string)null, id = UrlParameter.Optional }, 
-                constraints: new { page = @"\d+" }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-
-            routes.MapRoute(null,
-                "{category}",
-                new { controller = "Home", action = "Index", page = 1 }
-            );
-
-            routes.MapRoute(null,
-                "{category}/Page{page}",
-                new { controller = "Home", action = "Index" },
-                new { page = @"\d+" }
-            );
-
-            routes.MapRoute(null, "{controller}/{action}");
         }
     }
 }
