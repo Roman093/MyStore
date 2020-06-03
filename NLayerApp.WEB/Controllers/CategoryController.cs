@@ -10,21 +10,40 @@ using System.Web.Mvc;
 
 namespace NLayerApp.WEB.Controllers
 {
-    public class NavController : Controller
+    public class CategoryController : Controller
     {
         ICategoryService categoryService;
-        public NavController(ICategoryService serv)
+        public CategoryController(ICategoryService serv)
         {
             categoryService = serv;
         }
 
-        public PartialViewResult Menu(CategoryDTO category = null)
+        public ActionResult Index(/*CategoryViewModel category*/)
         {
             IEnumerable<ProductDTO> productDtos = categoryService.GetProducts();
 
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ProductDTO, ProductViewModel>()).CreateMapper();
             var categors = mapper.Map<IEnumerable<ProductDTO>, List<ProductViewModel>>(productDtos);
-            return PartialView(categors);
+
+
+            return View(categors);
+
+
+
+            //var categoryDto = new CategoryDTO { ProductId = category.ProductId, Name = category.Name };
+            //categoryService.Create(categoryDto);
+
+            //return PartialView(category);
+
+
+
+
+
+            //IEnumerable<CategoryDTO> categories = categoryService.GetCategorys()
+            //    .Select(product => product.Name)
+            //    .Distinct()
+            //    .OrderBy(x => x);
+            //return PartialView(categories);
         }
     }
 }

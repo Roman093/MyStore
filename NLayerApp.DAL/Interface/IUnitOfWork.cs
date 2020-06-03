@@ -10,7 +10,8 @@ namespace NLayerApp.DAL.Interface
    public interface IUnitOfWork:IDisposable
     {
         IRepository<Product> Products { get; }
-        IRepository<CartLine> Carts { get; }
+        ICartRepository<CartLine> Carts { get; }
+        IRepository<Category> Categorys { get; }
         IRepository<Order> Orders { get; }
         void Save();
     }

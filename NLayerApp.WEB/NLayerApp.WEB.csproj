@@ -148,6 +148,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -156,12 +157,14 @@
     <Compile Include="Mapping\ProductMapp.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartViewModel.cs" />
-    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\ProductListViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\CartModule.cs" />
+    <Compile Include="Util\CategoryModule.cs" />
     <Compile Include="Util\OrderModule.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +259,7 @@
     <Content Include="wwwroot\css\style\sections\_content.scss" />
     <Content Include="wwwroot\css\style\sections\_footer.scss" />
     <Content Include="wwwroot\css\style\sections\_header.scss" />
+    <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

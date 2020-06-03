@@ -13,7 +13,7 @@ namespace NLayerApp.DAL.Repositories
     {
         private MobileContext db;
         private ProductRepository productRepository;
-        //private CategoryRepository categoryRepository;
+        private CategoryRepository categoryRepository;
         private OrderRepository orderRepository;
         private CartRepository cartRepository;
 
@@ -41,17 +41,17 @@ namespace NLayerApp.DAL.Repositories
             }
         }
 
-        //public IRepository<Category> Categorys
-        //{
-        //    get
-        //    {
-        //        if (categoryRepository == null)
-        //            categoryRepository = new CategoryRepository(db);
-        //        return categoryRepository;
-        //    }
-        //}
+        public IRepository<Category> Categorys
+        {
+            get
+            {
+                if (categoryRepository == null)
+                    categoryRepository = new CategoryRepository(db);
+                return categoryRepository;
+            }
+        }
 
-        public IRepository<CartLine> Carts
+        public ICartRepository<CartLine> Carts
         { 
             get
             {

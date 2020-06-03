@@ -1,10 +1,12 @@
-﻿using NLayerApp.BLL.DTO;
+﻿using AutoMapper;
+using NLayerApp.BLL.DTO;
 using NLayerApp.BLL.Interface;
 using NLayerApp.DAL.Entities;
 using NLayerApp.DAL.Interface;
 using NLayerApp.WEB.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,13 +21,26 @@ namespace NLayerApp.WEB.Controllers
         {
             cartService = serv;
         }
-        public ViewResult Index(string returnUrl)
+        public ViewResult Index(/*string returnUrl*/)
         {
-            return View(new CartViewModel
-            {
-                //Cart = GetCart(),
-                ReturnUrl = returnUrl
-            });
+            IEnumerable<OrderDTO> orderDtos = cartService.GetProduct();
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderDTO, OrderViewModel>()).CreateMapper();
+            return mapper.Map<IEnumerable<OrderDTO>, List<OrderViewModel>>(Database.Orders.GetAll());
+
+
+            //var cart = cartService.GetCart(returnUrl)
+
+            //var cartView = new CartViewModel
+            //{
+            //    CartItems = cart.GetProduct(),
+
+
+            //CartTotal = cart.GetTotalPrice()
+            //Cart = GetCart(),
+            //ReturnUrl = returnUrl
+            //};
+            return View(cartView);
         }
 
         public RedirectToRouteResult Add(int id, string returnUrl)

@@ -15,14 +15,17 @@
     <div class="navbar navbar-inverse" role="navigation">
         <a class="navbar-brand" href="#">Store - магазин смартфонов</a>
     </div>
-    <div class="row panel">
-        <div id="productDtos" class="col-xs-3">
-            @Html.Action("Menu", "Nav")
-        </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li> @Html.ActionLink("Home", "Index", "Home") </li>
+            <li> @Html.ActionLink("Store", "List", "Product")</li>
+        </ul>
+        @*@Html.Action("Category")*@
+    </div>
         <div class="col-xs-8">
             @RenderBody()
         </div>
-    </div>
+
 </body>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/wwwroot/javascript/bootstrap.js")

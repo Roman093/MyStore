@@ -11,6 +11,18 @@ namespace NLayerApp.WEB.Models
         //public int PhoneId { get; set; }
         public int ProductId { get; set; }
 
+        [Required(ErrorMessage = "Enter First Name")]
+        [MinLength(4)]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Enter Last Name")]
+        [MinLength(4)]
+        public string LastName { get; set; }
+
+        [Required(ErrorMessage = "Enter City")]
+        [MinLength(3)]
+        public string City { get; set; }
+
         [Required(ErrorMessage = "Enter Address")]
         [MinLength(2)]
         public string Address { get; set; }

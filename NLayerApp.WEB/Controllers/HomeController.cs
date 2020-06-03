@@ -53,7 +53,15 @@ namespace NLayerApp.WEB.Controllers
         {
             try
             {
-                var orderDto = new OrderDTO { ProductId = order.ProductId, Address = order.Address, PhoneNumber = order.PhoneNumber };
+                var orderDto = new OrderDTO
+                {
+                    ProductId = order.ProductId,
+                    FirstName = order.FirstName,
+                    LastName = order.LastName,
+                    City = order.City,
+                    Address = order.Address,
+                    PhoneNumber = order.PhoneNumber
+                };
                 orderService.MakeOrder(orderDto);
                 return Content("<h2>Ваш заказ успешно оформлен</h2>");
             }

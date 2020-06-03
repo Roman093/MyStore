@@ -20,9 +20,12 @@ namespace NLayerApp.WEB
  
             
             NinjectModule orderModule = new OrderModule();
+            NinjectModule categoryModule = new CategoryModule();
+            NinjectModule cartModule = new CartModule();
             NinjectModule serviceModule = new ServiceModule("DefaultConnection");
-            var kernel = new StandardKernel(orderModule, serviceModule);
+            var kernel = new StandardKernel(orderModule, cartModule, categoryModule, serviceModule);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+
         }
     }
 }

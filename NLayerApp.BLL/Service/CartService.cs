@@ -9,140 +9,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace NLayerApp.BLL.Service
 {
     public class CartService : ICartService
     {
+        private string ShoppingCartId { get; set; }
+        public const string CartSessionKey = "CartId";
 
+        //IOrderService order {get; set: }
         IUnitOfWork Database { get; set; }
 
         public CartService(IUnitOfWork uow)
         {
+            //order = orderService;
             Database = uow;
         }
 
-        public void Add(CartLineDTO cartLineDTO, int quantity)
+        public void AddCart(CartLineDTO cart)
         {
-            Product products = Database.Products.Get(cartLineDTO.ProductId);
-            if (cartLineDTO == null)
-                throw new NotImplementedException();
+            Product product = Database.Products.Get(cart.ProductId);
 
-            //Database.Add(new CartLineDTO
-            //{
-                CartLine cart = new CartLine
-                {
-                    ProductId = products.Id,
-                    Quantity = cartLineDTO.Quantity,
+            if (product == null)
+                throw new ValidationException("Корзина пуста", "");
 
-                    //quantity += quantity;
-                };
-                Database.Carts.Create(cart);
-                Database.Save();
-            }  
+            CartLine cartLine = new CartLine
+            {
+                ProductId = product.Id
+                //Product = ++
+            };
+            Database.Carts.Create(cartLine);
+            Database.Save();
+        }
 
         public ProductDTO GetProduct(int? id)
         {
             if (id == null)
-                throw new NotImplementedException();
+                throw new ValidationException("Корзина пуста", "");
             var product = Database.Products.Get(id.Value);
             if (product == null)
-                throw new NotImplementedException();
-            return new ProductDTO { Id = product.Id, Name = product.Name, Price = product.Price };
+                throw new ValidationException("Товар не найден", "");
+            return new ProductDTO { Company = product.Company,
+                Id = product.Id, Name = product.Name, Price = product.Price, /*Category=product.Category,*/ /*Details = product.Details,*/
+                img = product.img };
         }
-
-        public IEnumerable<ProductDTO> GetProducts()
+        public IEnumerable<OrderDTO> GetProduct()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Product, ProductDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<Product>, List<ProductDTO>>(Database.Products.GetAll());
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Order, OrderDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<Order>, List<OrderDTO>>(Database.Orders.GetAll());
         }
-
         public void Dispose()
         {
             Database.Dispose();
         }
+        //public CartService GetCart()
+        //{
+        //    var cart = new MapperConfiguration(cfg => cfg.CreateMap<Order, OrderDTO>()).CreateMapper();
+        //    return cart.Mapp<IEnumerable<Order>, List<OrderDTO>>(Database.Orders.GetAll());
+        //}
     }
 }
 
-//    {
-//        Database.Add(new CartLineDTO
-//        {
-//            Product = product,
-//            Quantity = quantity
-//        });
-//    }
-//    else
-//    {
-//        line.Quantity += quantity;
-//    }
-//}
-
-
-
-
-
-
-
-//    public CartLineDTO GetProduct(int? id)
-//    {
-//        throw new NotImplementedException();
-//    }
-
-//    ProductDTO ICartService.GetProduct(int? id)
-//    {
-//        throw new NotImplementedException();
-//    }
-
-//    public IEnumerable<ProductDTO> GetProducts()
-//    {
-//        throw new NotImplementedException();
-//    }
-
-//    public void Dispose()
-//    {
-//        throw new NotImplementedException();
-//    }
-//}
-
-
-
-//public void AddItem(Product product, int quantity)
-//{
-//    CartLine line = lineCollection
-//        .Where(p => p.Product.Id == product.Id)
-//        .FirstOrDefault();
-
-//    if (line == null)
-//    {
-//        lineCollection.Add(new CartLine
-//        {
-//            Product = product,
-//            Quantity = quantity
-//        });
-//    }
-//    else
-//    {
-//        line.Quantity += quantity;
-//    }
-//}
-
-//public void RemoveLine(Product product)
-//{
-//    lineCollection.RemoveAll(l => l.Product.Id == product.Id);
-//}
-
-//public decimal ComputeTotalValue()
-//{
-//    return lineCollection.Sum(e => e.Product.Price * e.Quantity);
-
-//}
-//public void Clear()
-//{
-//    lineCollection.Clear();
-//}
-
-//    public IEnumerable<CartLine> Lines
-//    {
-//        get { return lineCollection; }
-//    }
-//}

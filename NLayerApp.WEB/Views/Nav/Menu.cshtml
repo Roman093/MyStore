@@ -1,34 +1,90 @@
-﻿@model IEnumerable<string>
+﻿@using NLayerApp.WEB.Models
+@model IEnumerable<CategoryViewModel>
+
+@*<ul>
+    @{
+
+        foreach (var item in Model)
+        {
+            <li>*@
+@*@Html.ActionLink(item.Name, "List", "Products", new { @*page = 1, categoryId = item.Id }, null)*@
+@*</li>*@
+@*}
+        }
+    </ul>*@
+
+
+
+@*@model IEnumerable<CategoryViewModel>
+    @using NLayerApp.WEB.Models
+
+
+    @{
+
+        ViewBag.Title = "Menu";
+    }
+
+    @*<h2>Store</h2>*@
+@*<link href="~/wwwroot/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+
+
+    @foreach (var p in Model)
+    {
+        <div class="col-lg-4">
+
+            <h3>
+                @Html.DisplayFor(modelP => p.Name)
+            </h3>
+
+            @*<button type="button" class="btn btn-default"> @Html.ActionLink("Category", "Menu", new { id = p.Id })</button>*@
+
+@*</div>
+
+    }*@
+
+
+
+
+
+
 
 @Html.ActionLink("Home", "Index", "Product", null,
-    new { @class = "btn btn-block btn-default btn-lg" })
+        new { @class = "btn btn-block btn-default btn-lg" })
 <link href="~wwwroot/css/bootstrap.css" rel="stylesheet" type="text/css" />
 
 
 @foreach (var link in Model)
 {
-        @Html.RouteLink(link, new
-    {
-        controller = "Home",
-        action = "Index",
-        category = link,
-        page = 1
-    }, new
-    {
-        @class = "btn btn-block btn-default btn-lg"
-             + (link == ViewBag.SelectedCategory ? " btn-primary" : "")
-    })
+    <li>
+        @Html.ActionLink(link.Name, "List", "ComicBooks", new { page = 1, productId = link.ProductId }, null)
+    </li>
+    @*@Html.ActionLink(link, new
+        {
+            controller = "Home",
+            action = "Index",
+            category = link,
+            page = 1
+        }, new
+        {
+            @class = "btn btn-block btn-default btn-lg"
+                 + (link == ViewBag.SelectedCategory ? " btn-primary" : "")
+        })*@
 }
 
+
+
+
+
+
 @*<div class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        Category <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Phone</a></li>
-        <li><a href="#">C#</a></li>
-        <li><a href="#">VB.NET</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Java</a></li>
-    </ul>
-</div>*@
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Category <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Phone</a></li>
+            <li><a href="#">C#</a></li>
+            <li><a href="#">VB.NET</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Java</a></li>
+        </ul>
+    </div>*@
